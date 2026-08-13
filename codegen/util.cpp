@@ -9,7 +9,12 @@ std::set<int> newlineSet;
 
 void mapComment(int line, const std::string& comment)
 {
-    commentMap[line] = comment;
+    std::string trimmed = comment;
+    if (!trimmed.empty() && trimmed.back() == '\r')
+    {
+        trimmed.pop_back();
+    }
+    commentMap[line] = trimmed;
 }
 
 void mapNewline(int line)
